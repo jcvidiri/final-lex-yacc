@@ -17,7 +17,7 @@ El compilador tiny genera un archivo con extensión tm (sample.tm), el cual cont
     $ gcc tm.c –o tm.
 
 El archivo resultante (tm) nos permitira traducir las instrucciones en lenguaje ensamblador.
-  
+
     $ ./tm sample.tm.
 
 TM ejecutará las instrucciones del programa (sample.tny) que tiny compilo.
