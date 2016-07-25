@@ -236,7 +236,7 @@ int readInstructions (void)
   lineNo = 0 ;
   while (! feof(pgm))
   { fgets( in_Line, LINESIZE-2, pgm  ) ;
-    inCol = 0 ; 
+    inCol = 0 ;
     lineNo++;
     lineLen = strlen(in_Line)-1 ;
     if (in_Line[lineLen]=='\n') in_Line[lineLen] = '\0' ;
@@ -268,7 +268,7 @@ int readInstructions (void)
         if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
             return error("Bad second register", lineNo, loc);
         arg2 = num;
-        if ( ! skipCh(',')) 
+        if ( ! skipCh(','))
             return error("Missing comma", lineNo,loc);
         if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
             return error("Bad third register", lineNo,loc);
@@ -351,7 +351,7 @@ STEPRESULT stepTM (void)
     case opIN :
     /***********************************/
       do
-      { printf("Enter value for IN instruction: ") ;
+      { printf("< IN >: ") ;
         fflush (stdin);
         fflush (stdout);
         gets(in_Line);
@@ -364,8 +364,8 @@ STEPRESULT stepTM (void)
       while (! ok);
       break;
 
-    case opOUT :  
-      printf ("OUT instruction prints: %d\n", reg[r] ) ;
+    case opOUT :
+      printf ("< OUT >: %d\n", reg[r] ) ;
       break;
     case opADD :  reg[r] = reg[s] + reg[t] ;  break;
     case opSUB :  reg[r] = reg[s] - reg[t] ;  break;
@@ -404,7 +404,7 @@ int doCommand (void)
   int stepResult;
   int regNo, loc;
   do
-  { printf ("Enter command: ");
+  { printf ("command: ");
     fflush (stdin);
     fflush (stdout);
     gets(in_Line);
@@ -424,27 +424,27 @@ int doCommand (void)
 
     case 'h' :
     /***********************************/
-      printf("Commands are:\n");
-      printf("   s(tep <n>      "\
+      printf("< HELP >\n");
+      printf("step <n>      "\
              "Execute n (default 1) TM instructions\n");
-      printf("   g(o            "\
+      printf("go            "\
              "Execute TM instructions until HALT\n");
-      printf("   r(egs          "\
+      printf("regs          "\
              "Print the contents of the registers\n");
-      printf("   i(Mem <b <n>>  "\
+      printf("iMem <b> <n>  "\
              "Print n iMem locations starting at b\n");
-      printf("   d(Mem <b <n>>  "\
+      printf("dMem <b> <n>  "\
              "Print n dMem locations starting at b\n");
-      printf("   t(race         "\
+      printf("trace         "\
              "Toggle instruction trace\n");
-      printf("   p(rint         "\
+      printf("print         "\
              "Toggle print of total instructions executed"\
-             " ('go' only)\n");
-      printf("   c(lear         "\
+             " ('factorial' only)\n");
+      printf("clear         "\
              "Reset simulator for new execution of program\n");
-      printf("   h(elp          "\
+      printf("help          "\
              "Cause this list of commands to be printed\n");
-      printf("   q(uit          "\
+      printf("quit          "\
              "Terminate the simulation\n");
       break;
 
@@ -577,7 +577,7 @@ main( int argc, char * argv[] )
   /* switch input file to terminal */
   /* reset( input ); */
   /* read-eval-print */
-  printf("TM  simulation (enter h for help)...\n");
+  printf("TM simulation (h for HELP)...\n");
   do
      done = ! doCommand ();
   while (! done );
