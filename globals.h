@@ -15,6 +15,10 @@
 #include <ctype.h>
 #include <string.h>
 
+
+/*El archivo globals.h contiene las definiciones de los tipos de datos y variables
+globales utilizadas a lo largo del compilador. */
+
 /* Yacc/Bison generates internally its own values
  * for the tokens. Other files can access these values
  * by including the tab.h file generated using the
@@ -27,7 +31,7 @@
 #ifndef YYPARSER
 
 /* the name of the following file may change */
-#include "y.tab.h"
+#include "y.tab.h" 
 
 /* ENDFILE is implicitly defined by Yacc/Bison,
  * and not included in the tab.h file
@@ -50,7 +54,7 @@
 /* Yacc/Bison generates its own integer values
  * for tokens
  */
-typedef int TokenType; 
+typedef int TokenType;
 
 extern FILE* source; /* source code text file */
 extern FILE* listing; /* listing output text file */
@@ -116,5 +120,5 @@ extern int TraceAnalyze;
 extern int TraceCode;
 
 /* Error = TRUE prevents further passes if an error occurs */
-extern int Error; 
+extern int Error;
 #endif

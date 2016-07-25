@@ -29,60 +29,70 @@
 * <- Const
  15:     ST  0,1(5) 	assign: store value
 * <- assign
+* -> assign
+* -> Const
+ 16:    LDC  0,2(0) 	load const
+* <- Const
+ 17:     ST  0,2(5) 	assign: store value
+* <- assign
 * -> repeat
 * repeat: jump after body comes back here
 * -> assign
 * -> Op
 * -> Id
- 16:     LD  0,1(5) 	load id value
+ 18:     LD  0,1(5) 	load id value
 * <- Id
- 17:     ST  0,0(6) 	op: push left
+ 19:     ST  0,0(6) 	op: push left
 * -> Id
- 18:     LD  0,0(5) 	load id value
+ 20:     LD  0,0(5) 	load id value
 * <- Id
- 19:     LD  1,0(6) 	op: load left
- 20:    MUL  0,1,0 	op *
+ 21:     LD  1,0(6) 	op: load left
+ 22:    MUL  0,1,0 	op *
 * <- Op
- 21:     ST  0,1(5) 	assign: store value
+ 23:     ST  0,1(5) 	assign: store value
 * <- assign
 * -> assign
 * -> Op
 * -> Id
- 22:     LD  0,0(5) 	load id value
+ 24:     LD  0,0(5) 	load id value
 * <- Id
- 23:     ST  0,0(6) 	op: push left
+ 25:     ST  0,0(6) 	op: push left
 * -> Const
- 24:    LDC  0,1(0) 	load const
+ 26:    LDC  0,1(0) 	load const
 * <- Const
- 25:     LD  1,0(6) 	op: load left
- 26:    SUB  0,1,0 	op -
+ 27:     LD  1,0(6) 	op: load left
+ 28:    SUB  0,1,0 	op -
 * <- Op
- 27:     ST  0,0(5) 	assign: store value
+ 29:     ST  0,0(5) 	assign: store value
 * <- assign
 * -> Op
 * -> Id
- 28:     LD  0,0(5) 	load id value
+ 30:     LD  0,0(5) 	load id value
 * <- Id
- 29:     ST  0,0(6) 	op: push left
+ 31:     ST  0,0(6) 	op: push left
 * -> Const
- 30:    LDC  0,0(0) 	load const
+ 32:    LDC  0,0(0) 	load const
 * <- Const
- 31:     LD  1,0(6) 	op: load left
- 32:    SUB  0,1,0 	op ==
- 33:    JEQ  0,2(7) 	br if true
- 34:    LDC  0,0(0) 	false case
- 35:    LDA  7,1(7) 	unconditional jmp
- 36:    LDC  0,1(0) 	true case
+ 33:     LD  1,0(6) 	op: load left
+ 34:    SUB  0,1,0 	op ==
+ 35:    JEQ  0,2(7) 	br if true
+ 36:    LDC  0,0(0) 	false case
+ 37:    LDA  7,1(7) 	unconditional jmp
+ 38:    LDC  0,1(0) 	true case
 * <- Op
- 37:    JEQ  0,-22(7) 	repeat: jmp back to body
+ 39:    JEQ  0,-22(7) 	repeat: jmp back to body
 * <- repeat
 * -> Id
- 38:     LD  0,1(5) 	load id value
+ 40:     LD  0,1(5) 	load id value
 * <- Id
- 39:    OUT  0,0,0 	write ac
+ 41:    OUT  0,0,0 	write ac
+* -> Id
+ 42:     LD  0,2(5) 	load id value
+* <- Id
+ 43:    OUT  0,0,0 	write ac
 * if: jump to end belongs here
- 13:    JEQ  0,27(7) 	if: jmp to else
- 40:    LDA  7,0(7) 	jmp to end
+ 13:    JEQ  0,31(7) 	if: jmp to else
+ 44:    LDA  7,0(7) 	jmp to end
 * <- if
 * End of execution.
- 41:   HALT  0,0,0 	
+ 45:   HALT  0,0,0 	

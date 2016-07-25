@@ -6,6 +6,10 @@
 /* Kenneth C. Louden                                */
 /****************************************************/
 
+
+/*El archivo code.c contiene funciones utilizadas para la generación de código que
+dependen de la máquina objetivo TM.*/
+
 #include "globals.h"
 #include "code.h"
 
@@ -17,7 +21,7 @@ static int emitLoc = 0 ;
    emitBackup, and emitRestore */
 static int highEmitLoc = 0;
 
-/* Procedure emitComment prints a comment line 
+/* Procedure emitComment prints a comment line
  * with comment c in the code file
  */
 void emitComment( char * c )
@@ -64,7 +68,7 @@ int emitSkip( int howMany)
    return i;
 } /* emitSkip */
 
-/* Procedure emitBackup backs up to 
+/* Procedure emitBackup backs up to
  * loc = a previously skipped location
  */
 void emitBackup( int loc)
@@ -72,14 +76,14 @@ void emitBackup( int loc)
   emitLoc = loc ;
 } /* emitBackup */
 
-/* Procedure emitRestore restores the current 
+/* Procedure emitRestore restores the current
  * code position to the highest previously
  * unemitted position
  */
 void emitRestore(void)
 { emitLoc = highEmitLoc;}
 
-/* Procedure emitRM_Abs converts an absolute reference 
+/* Procedure emitRM_Abs converts an absolute reference
  * to a pc-relative reference when emitting a
  * register-to-memory TM instruction
  * op = the opcode

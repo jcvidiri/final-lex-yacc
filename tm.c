@@ -5,6 +5,12 @@
 /* Kenneth C. Louden                                */
 /****************************************************/
 
+
+/*Para evitar tener que generar lenguaje de objetivo particulares para cada procesador,
+este compilador generará un código objetivo que será el lenguaje ensamblador para un procesador
+ hipotético simple, que llamaremos TM (TINY Machine). Luego el archivo tm.c contiene el simulador
+ que interpreta el código ensamblador generado y lo ejecuta.*/
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

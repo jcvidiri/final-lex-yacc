@@ -8,6 +8,12 @@
 /* Kenneth C. Louden                                */
 /****************************************************/
 
+
+/*El archivo symtab.c contiene las definiciones e implementaciones de las funciones
+utilizadas para el manejo de la tabla de símbolos, y de las estructuras utilizadas
+por estas funciones.*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +37,7 @@ static int hash ( char * key )
   return temp;
 }
 
-/* the list of line numbers of the source 
+/* the list of line numbers of the source
  * code in which a variable is referenced
  */
 typedef struct LineListRec
@@ -40,7 +46,7 @@ typedef struct LineListRec
    } * LineList;
 
 /* The record in the bucket lists for
- * each variable, including name, 
+ * each variable, including name,
  * assigned memory location, and
  * the list of line numbers in which
  * it appears in the source code
@@ -83,7 +89,7 @@ void st_insert( char * name, int lineno, int loc )
   }
 } /* st_insert */
 
-/* Function st_lookup returns the memory 
+/* Function st_lookup returns the memory
  * location of a variable or -1 if not found
  */
 int st_lookup ( char * name )
@@ -95,8 +101,8 @@ int st_lookup ( char * name )
   else return l->memloc;
 }
 
-/* Procedure printSymTab prints a formatted 
- * listing of the symbol table contents 
+/* Procedure printSymTab prints a formatted
+ * listing of the symbol table contents
  * to the listing file
  */
 void printSymTab(FILE * listing)

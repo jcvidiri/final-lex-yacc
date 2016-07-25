@@ -5,6 +5,13 @@
 /* Kenneth C. Louden                                */
 /****************************************************/
 
+/*El archivo main.c contiene el programa principal que controla el compilador. Su esqueleto respeta las siguientes líneas:
+syntaxTree = parse();
+buildSymtab(syntaxTree);
+typeCheck(syntaxTree);
+codeGen(syntaxTree, codefile);
+*/
+
 #include "globals.h"
 
 /* set NO_PARSE to TRUE to get a scanner-only compiler */
@@ -37,7 +44,7 @@ FILE * listing;
 FILE * code;
 
 /* allocate and set tracing flags */
-int EchoSource = TRUE;
+int EchoSource = FALSE;
 int TraceScan = TRUE;
 int TraceParse = TRUE;
 int TraceAnalyze = TRUE;
@@ -46,15 +53,15 @@ int TraceCode = TRUE;
 int Error = FALSE;
 
 main( int argc, char * argv[] )
-{ TreeNode * syntaxTree;
+{ TreeNode * syntaxTree; //inicializa el arbol
   char pgm[120]; /* source code file name */
   if (argc != 2)
-    { fprintf(stderr,"usage: %s <filename>\n",argv[0]);
+    { fprintf(stderr,"usage: %s <filename>\n",argv[0]); //en caso de uso incorrecto
       exit(1);
     }
   strcpy(pgm,argv[1]) ;
   if (strchr (pgm, '.') == NULL)
-     strcat(pgm,".tny");
+     strcat(pgm,".tny"); //aqui obtengo el sample.tny, en caso de ser null devuelvo error
   source = fopen(pgm,"r");
   if (source==NULL)
   { fprintf(stderr,"File %s not found\n",pgm);
@@ -63,14 +70,14 @@ main( int argc, char * argv[] )
   listing = stdout; /* send listing to screen */
   fprintf(listing,"\nTINY COMPILATION: %s\n",pgm);
 #if NO_PARSE
-  while (getToken()!=ENDFILE);
+  while (getToken()!=ENDFILE); //si cno habilito la parte de parsing, continua generando tokens hasta en EOF.
 #else
-  syntaxTree = parse();
-  if (TraceParse) {
+  syntaxTree = parse(); //sino.. llama al parser para que genere y devuelva el arbol de parging
+  if (TraceParse) { //si esta el TraceParse en true, imprimo el arbol
     fprintf(listing,"\nSyntax tree:\n");
     printTree(syntaxTree);
   }
-#if !NO_ANALYZE
+#if !NO_ANALYZE // a menos que cancele el analizador semantico, chequea que los tipos y las tablas de simbolos esten ok
   if (! Error)
   { if (TraceAnalyze) fprintf(listing,"\nBuilding Symbol Table...\n");
     buildSymtab(syntaxTree);
@@ -90,7 +97,7 @@ main( int argc, char * argv[] )
     { printf("Unable to open %s\n",codefile);
       exit(1);
     }
-    codeGen(syntaxTree,codefile);
+    codeGen(syntaxTree,codefile); //obtengo el codigo intermedio, preparado para la tm
     fclose(code);
   }
 #endif

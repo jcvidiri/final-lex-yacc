@@ -5,8 +5,11 @@
 /* Kenneth C. Louden                                */
 /*                                                  */
 /* Modified to fix YYSTYPE declaration.             */
-/*
 /****************************************************/
+
+/* aqui están definidas las gramaticas / reglas de producción */
+
+
 %{
 #define YYPARSER /* distinguishes Yacc output from other code files */
 
@@ -24,6 +27,7 @@ static TreeNode * savedTree; /* stores syntax tree for later return */
 static int yylex(void);
 
 %}
+
 
 %token IF THEN ELSE END REPEAT UNTIL READ WRITE
 %token ID NUM

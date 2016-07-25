@@ -7,6 +7,10 @@
 /* Kenneth C. Louden                                */
 /****************************************************/
 
+/*El archivo cgen.c contiene las definiciones e implementaciones de las funciones que utiliza
+el generador de código, y de las estructuras utilizadas por estas funciones.
+*/
+
 #include "globals.h"
 #include "symtab.h"
 #include "code.h"
@@ -106,7 +110,7 @@ static void genExp( TreeNode * tree)
       emitRM("LDC",ac,tree->attr.val,0,"load const");
       if (TraceCode)  emitComment("<- Const") ;
       break; /* ConstK */
-    
+
     case IdK :
       if (TraceCode) emitComment("-> Id") ;
       loc = st_lookup(tree->attr.name);

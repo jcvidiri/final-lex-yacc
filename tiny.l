@@ -5,13 +5,19 @@
 /* Kenneth C. Louden                                */
 /****************************************************/
 
-%{
+/* aqui están definidas las expresiones regulares */
+
+%{ /* definiciones */
 #include "globals.h"
 #include "util.h"
 #include "scan.h"
 /* lexeme of identifier or reserved word */
 char tokenString[MAXTOKENLEN+1];
 %}
+
+
+/* reglas, cosas que puede llegar a leer el scanner */
+
 
 digit       [0-9]
 number      {digit}+
@@ -40,10 +46,10 @@ whitespace  [ \t]+
 "("             {return LPAREN;}
 ")"             {return RPAREN;}
 ";"             {return SEMI;}
-{number}        {return NUM;}
+{number}        {return NUM;} /* devuelvo el tipo de token num */
 {identifier}    {return ID;}
 {newline}       {lineno++;}
-{whitespace}    {/* skip whitespace */}
+{whitespace}    {/* skip whitespace, no se tiene en cuenta */}
 "{"             { char c;
                   do
                   { c = input();
@@ -54,6 +60,7 @@ whitespace  [ \t]+
 .               {return ERROR;}
 
 %%
+/* rutinas auxiliares */
 
 TokenType getToken(void)
 { static int firstTime = TRUE;
@@ -72,4 +79,3 @@ TokenType getToken(void)
   }
   return currentToken;
 }
-

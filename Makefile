@@ -26,7 +26,7 @@ lex.yy.o: lex.yy.c scan.h util.h globals.h
 	$(CC) $(CFLAGS) -c lex.yy.c
 
 y.tab.c y.tab.h: tiny.y
-	yacc --defines=y.tab.h tiny.y
+	yacc --defines=y.tab.h tiny.y 
 
 y.tab.o: y.tab.c parse.h scan.h globals.h util.h
 	$(CC) $(CFLAGS) -c y.tab.c
